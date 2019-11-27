@@ -33,12 +33,12 @@ public class FakeToDoDataAcessService implements ToDoDao {
     }
 
     @Override
-    public int updateToDoById(UUID id, ToDo toDo) {
+    public int updateToDoById(UUID id, ToDo update) {
         return selectToDoById(id)
-                .map(t -> {
-                    int indexOfToDoToDelete = DB.indexOf(toDo);
-                    if (indexOfToDoToDelete >= 0){
-                        DB.set(indexOfToDoToDelete, toDo);
+                .map(toDo -> {
+                    int indexOfToDoToUpdate = DB.indexOf(toDo);
+                    if (indexOfToDoToUpdate >= 0){
+                        DB.set(indexOfToDoToUpdate, new ToDo(id, update.getName(), update.getDescription()));
                         return 1;
                     }
                     return 0;

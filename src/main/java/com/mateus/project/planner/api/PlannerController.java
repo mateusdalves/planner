@@ -3,8 +3,10 @@ package com.mateus.project.planner.api;
 import com.mateus.project.planner.model.ToDo;
 import com.mateus.project.planner.service.ToDoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,7 +21,7 @@ public class PlannerController {
     }
 
     @PostMapping
-    public void addToDo(@RequestBody ToDo toDo){
+    public void addToDo(@Valid @NonNull @RequestBody ToDo toDo){
         this.toDoService.addToDo(toDo);
     }
 
@@ -40,7 +42,7 @@ public class PlannerController {
     }
 
     @PutMapping(path = "{id}")
-    public void updateToDo(@PathVariable("id") UUID id, @RequestBody ToDo toDoToUpdate){
+    public void updateToDo(@PathVariable("id") UUID id, @Valid @NonNull @RequestBody ToDo toDoToUpdate){
         toDoService.updateToDo(id, toDoToUpdate);
     }
 

@@ -3,11 +3,13 @@ package com.mateus.project.planner.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
 
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 import java.util.UUID;
 
 public class ToDo {
     private final String description;
+    @NotBlank
     private final String name;
     private Boolean done;
     private String state;
